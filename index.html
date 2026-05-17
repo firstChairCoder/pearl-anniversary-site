@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>30 Years of Love — A Family Anniversary</title>
+
+  <!-- ======================================================
+       FONTS — swap Google Font names here if desired
+       Current: Cormorant Garamond (headings) + Jost (body)
+  ====================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES — CHANGE COLOR PALETTE HERE
+       ============================================================ */
+    :root {
+      --clr-bg:          #faf7f2;       /* warm off-white page bg   */
+      --clr-bg-deep:     #f0ebe0;       /* slightly deeper cream     */
+      --clr-paper:       #fffdf8;       /* card / note surface       */
+      --clr-gold:        #b8973c;       /* primary gold accent       */
+      --clr-gold-light:  #d4b96a;       /* lighter gold highlight    */
+      --clr-blush:       #e8c4b8;       /* soft blush / rose         */
+      --clr-blush-deep:  #c9957f;       /* deeper blush accent       */
+      --clr-text:        #2c2420;       /* near-black warm text      */
+      --clr-text-muted:  #7a6a5e;       /* muted brown-grey          */
+      --clr-line:        #d8cfc3;       /* timeline line color       */
+
+      /* ---- TYPOGRAPHY ---- */
+      --font-display:    'Cormorant Garamond', Georgia, serif;
+      --font-body:       'Jost', sans-serif;
+      --font-script:     'Dancing Script', cursive;
+
+      /* ---- SPACING ---- */
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  2rem;
+      --space-lg:  4rem;
+      --space-xl:  7rem;
+
+      /* ---- MISC ---- */
+      --radius:    4px;
+      --transition: 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background-color: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       NOISE TEXTURE OVERLAY (subtle grain — adds warmth)
+    ============================================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ============================================================
+       PARALLAX HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    /* Parallax background layer */
+    .hero__bg {
+      position: absolute;
+      inset: -15%;           /* oversized so parallax shift stays in frame */
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(232,196,184,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(184,151,60,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(184,151,60,0.10) 0%, transparent 60%),
+        var(--clr-bg-deep);
+      will-change: transform;
+      z-index: 0;
+    }
+
+    /* Decorative botanical SVG rings */
+    .hero__ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(184,151,60,0.2);
+      z-index: 0;
+    }
+    .hero__ring--1 { width: 520px; height: 520px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .hero__ring--2 { width: 750px; height: 750px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(184,151,60,0.10); }
+    .hero__ring--3 { width: 980px; height: 980px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(184,151,60,0.06); }
+
+    .hero__content { position: relative; z-index: 1; max-width: 680px; }
+
+    .hero__eyebrow {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-bottom: var(--space-md);
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--clr-text);
+      margin-bottom: var(--space-sm);
+      opacity: 0;
+      animation: fadeUp 1s 0.55s forwards;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      color: var(--clr-gold);
+    }
+
+    .hero__subtitle {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--clr-text-muted);
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      animation: fadeUp 1s 0.8s forwards;
+    }
+
+    /* EDIT TEXT HERE — names and dates in hero */
+    .hero__names {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      font-family: var(--font-script);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--clr-text);
+      opacity: 0;
+      animation: fadeUp 1s 1.05s forwards;
+    }
+
+    .hero__names .ampersand {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.8rem;
+      color: var(--clr-gold);
+      line-height: 1;
+    }
+
+    .hero__dates {
+      margin-top: var(--space-md);
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--clr-text-muted);
+      opacity: 0;
+      animation: fadeUp 1s 1.3s forwards;
+    }
+
+    .hero__scroll-cue {
+      position: absolute;
+      bottom: var(--space-md);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--clr-text-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1s 2s forwards;
+      z-index: 1;
+    }
+
+    .hero__scroll-cue::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--clr-gold), transparent);
+      animation: lineGrow 1.5s 2.5s ease-out both;
+    }
+
+    /* ============================================================
+       PROGRESS BAR
+    ============================================================ */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--clr-blush), var(--clr-gold));
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* ============================================================
+       MUSIC TOGGLE
+    ============================================================ */
+    .music-btn {
+      position: fixed;
+      bottom: var(--space-md);
+      right: var(--space-md);
+      z-index: 500;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--clr-gold);
+      background: rgba(250,247,242,0.9);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-gold);
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(184,151,60,0.15);
+    }
+    .music-btn:hover { background: var(--clr-gold); color: white; transform: scale(1.05); }
+    .music-btn svg  { width: 20px; height: 20px; fill: currentColor; }
+
+    /* ============================================================
+       SECTION INTRO DIVIDER
+    ============================================================ */
+    .chapter-intro {
+      text-align: center;
+      padding: var(--space-xl) var(--space-md) var(--space-lg);
+      position: relative;
+    }
+
+    .chapter-intro__label {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-bottom: var(--space-sm);
+    }
+
+    .chapter-intro__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--clr-text);
+      margin-bottom: var(--space-sm);
+    }
+
+    .chapter-intro__rule {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
+      margin: var(--space-sm) auto 0;
+    }
+
+    /* ============================================================
+       TIMELINE LAYOUT
+    ============================================================ */
+    .timeline {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+
+    /* Central vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--clr-line) 8%, var(--clr-line) 92%, transparent);
+    }
+
+    /* ============================================================
+       TIMELINE ITEM
+    ============================================================ */
+    .timeline__item {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      align-items: start;
+      margin-bottom: var(--space-xl);
+      position: relative;
+
+      /* Scroll animation starting state */
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .timeline__item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Alternate left/right positioning */
+    .timeline__item:nth-child(odd)  .timeline__card { grid-column: 1; grid-row: 1; text-align: right; padding-right: var(--space-md); }
+    .timeline__item:nth-child(odd)  .timeline__image-wrap { grid-column: 3; grid-row: 1; padding-left: var(--space-md); }
+    .timeline__item:nth-child(even) .timeline__card { grid-column: 3; grid-row: 1; text-align: left;  padding-left: var(--space-md);  }
+    .timeline__item:nth-child(even) .timeline__image-wrap { grid-column: 1; grid-row: 1; padding-right: var(--space-md); }
+
+    /* Slide-in direction per side */
+    .timeline__item:nth-child(odd)  { --slide-dir: -30px; }
+    .timeline__item:nth-child(even) { --slide-dir:  30px; }
+    .timeline__item { transform: translateY(30px) translateX(var(--slide-dir, 0)); }
+    .timeline__item.is-visible { transform: translateY(0) translateX(0); }
+
+    /* Central dot */
+    .timeline__dot {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: var(--space-sm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline__dot::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--clr-gold);
+      background: var(--clr-paper);
+      display: block;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px rgba(184,151,60,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline__item:hover .timeline__dot::before {
+      transform: scale(1.4);
+      box-shadow: 0 0 0 6px rgba(184,151,60,0.18);
+    }
+
+    /* ============================================================
+       TIMELINE CARD (text side)
+    ============================================================ */
+    .timeline__card {
+      padding-top: 2px; /* align with dot */
+    }
+
+    .timeline__year {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--clr-gold-light);
+      letter-spacing: -0.02em;
+      margin-bottom: 2px;
+    }
+
+    .timeline__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--clr-text);
+      margin-bottom: var(--space-xs);
+    }
+
+    .timeline__caption {
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      line-height: 1.8;
+      max-width: 320px;
+    }
+
+    /* Right-aligned card pushes caption to the right */
+    .timeline__item:nth-child(odd) .timeline__caption { margin-left: auto; }
+
+    .timeline__tag {
+      display: inline-block;
+      margin-top: var(--space-xs);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-blush-deep);
+      border-bottom: 1px solid var(--clr-blush);
+      padding-bottom: 1px;
+    }
+
+    /* ============================================================
+       TIMELINE IMAGE
+    ============================================================ */
+    .timeline__image-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline__image-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255,255,255,0.5);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* REPLACE IMAGE HERE — see each milestone below for individual src */
+    .timeline__image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+      filter: sepia(15%) saturate(90%);
+    }
+
+    .timeline__image-wrap:hover .timeline__image {
+      transform: scale(1.04);
+      filter: sepia(5%) saturate(100%);
+    }
+
+    /* Vintage frame ornament */
+    .timeline__image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(184,151,60,0.25);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       STATS / MILESTONES BAND
+    ============================================================ */
+    .stats-band {
+      background: var(--clr-bg-deep);
+      border-top: 1px solid var(--clr-line);
+      border-bottom: 1px solid var(--clr-line);
+      padding: var(--space-lg) var(--space-md);
+      margin: var(--space-xl) 0;
+    }
+
+    .stats-band__inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      text-align: center;
+    }
+
+    .stat__number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--clr-gold);
+      line-height: 1;
+    }
+
+    .stat__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-text-muted);
+      margin-top: var(--space-xs);
+    }
+
+    /* ============================================================
+       HANDWRITTEN NOTE SECTION
+    ============================================================ */
+    .note-section {
+      padding: var(--space-xl) var(--space-md);
+      display: flex;
+      justify-content: center;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(232,196,184,0.2) 0%, transparent 70%),
+        var(--clr-bg);
+    }
+
+    .note-card {
+      position: relative;
+      max-width: 620px;
+      width: 100%;
+      background: var(--clr-paper);
+      padding: var(--space-lg) var(--space-lg) calc(var(--space-lg) + 1rem);
+      box-shadow:
+        0 1px 0 var(--clr-line),
+        0 2px 0 rgba(0,0,0,0.03),
+        0 20px 60px rgba(0,0,0,0.06),
+        inset 0 0 0 1px rgba(255,255,255,0.8);
+
+      /* slight rotation for that personal feel */
+      transform: rotate(-0.8deg);
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .note-card.is-visible {
+      opacity: 1;
+      transform: rotate(-0.8deg) translateY(0);
+    }
+
+    /* Lined paper effect */
+    .note-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(1.75rem * 1.75 - 1px),
+        rgba(184,151,60,0.08) calc(1.75rem * 1.75 - 1px),
+        rgba(184,151,60,0.08) calc(1.75rem * 1.75)
+      );
+      pointer-events: none;
+    }
+
+    /* Red margin line */
+    .note-card::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 64px;
+      width: 1px;
+      background: rgba(201,149,127,0.25);
+    }
+
+    .note-card__label {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-bottom: var(--space-md);
+      position: relative;
+      z-index: 1;
+      padding-left: 72px; /* past the red margin */
+    }
+
+    /* EDIT TEXT HERE — the handwritten message */
+    .note-card__text {
+      font-family: var(--font-script);
+      font-size: clamp(1.3rem, 3vw, 1.65rem);
+      line-height: 1.85;
+      color: var(--clr-text);
+      position: relative;
+      z-index: 1;
+      padding-left: 72px;
+    }
+
+    .note-card__sign {
+      font-family: var(--font-script);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--clr-blush-deep);
+      margin-top: var(--space-md);
+      text-align: right;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      border-top: 1px solid var(--clr-line);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--clr-text-muted);
+      text-transform: uppercase;
+    }
+
+    footer .heart { color: var(--clr-blush-deep); }
+
+    /* ============================================================
+       KEYFRAME ANIMATIONS
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes lineGrow {
+      from { transform: scaleY(0); transform-origin: top; }
+      to   { transform: scaleY(1); transform-origin: top; }
+    }
+
+    /* ============================================================
+       CINEMATIC FULL-SCREEN SCENES (Part 1 addition)
+    ============================================================ */
+
+    /* Scene transition bridge — appears between hero and timeline */
+    .scene-block {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    .scene-block--reverse { direction: rtl; }
+    .scene-block--reverse > * { direction: ltr; }
+
+    /* Full-bleed image panel */
+    .scene-block__visual {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scene-block__visual img {
+      position: absolute;
+      inset: -8%;            /* oversized for parallax shift */
+      width: 116%;
+      height: 116%;
+      object-fit: cover;
+      will-change: transform;
+      filter: sepia(20%) saturate(85%) brightness(0.92);
+      transition: filter 0.6s ease;
+    }
+
+    .scene-block__visual:hover img { filter: sepia(8%) saturate(100%) brightness(0.98); }
+
+    /* Overlay vignette on image side */
+    .scene-block__visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(250,247,242,0.18), rgba(250,247,242,0));
+      pointer-events: none;
+    }
+
+    .scene-block--reverse .scene-block__visual::after {
+      background: linear-gradient(to left, rgba(250,247,242,0.18), rgba(250,247,242,0));
+    }
+
+    /* Text panel */
+    .scene-block__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-xl) clamp(var(--space-lg), 6vw, 8rem);
+      background: var(--clr-bg);
+      position: relative;
+    }
+
+    /* Thin accent bar on the inner edge */
+    .scene-block__text::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      bottom: 10%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--clr-gold-light), transparent);
+    }
+
+    .scene-block:not(.scene-block--reverse) .scene-block__text::before { left: 0; }
+    .scene-block--reverse                   .scene-block__text::before { right: 0; }
+
+    .scene-block__eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-bottom: var(--space-sm);
+    }
+
+    .scene-block__year {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--clr-blush);
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .scene-block__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--clr-text);
+      margin-bottom: var(--space-md);
+    }
+
+    .scene-block__caption {
+      font-size: 0.9rem;
+      color: var(--clr-text-muted);
+      line-height: 1.9;
+      max-width: 400px;
+    }
+
+    .scene-block__rule {
+      width: 40px;
+      height: 1px;
+      background: var(--clr-gold);
+      margin: var(--space-md) 0;
+    }
+
+    /* Scene scroll-in state */
+    .scene-block__text,
+    .scene-block__visual {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .scene-block__visual { transition-delay: 0.15s; transform: translateY(0) scale(1.03); }
+
+    .scene-block.is-visible .scene-block__text  { opacity: 1; transform: translateY(0); }
+    .scene-block.is-visible .scene-block__visual { opacity: 1; transform: scale(1); }
+
+    /* ============================================================
+       ALBUM BRIDGE — cinematic transition into the photo album
+    ============================================================ */
+    .album-bridge {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-xl) var(--space-md);
+      background:
+        linear-gradient(to bottom, var(--clr-bg) 0%, var(--clr-bg-deep) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .album-bridge::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 60%, rgba(184,151,60,0.08) 0%, transparent 70%);
+    }
+
+    .album-bridge__label {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-bottom: var(--space-sm);
+      position: relative;
+    }
+
+    .album-bridge__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--clr-text);
+      margin-bottom: var(--space-sm);
+      position: relative;
+    }
+
+    .album-bridge__sub {
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      letter-spacing: 0.05em;
+      position: relative;
+    }
+
+    .album-bridge__rule {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
+      margin: var(--space-md) auto;
+      position: relative;
+    }
+
+    /* ============================================================
+       PHOTO ALBUM — MASONRY WALL (Part 2)
+    ============================================================ */
+    .photo-album {
+      background: var(--clr-bg-deep);
+      padding: var(--space-lg) var(--space-md) var(--space-xl);
+      border-top: 1px solid var(--clr-line);
+    }
+
+    .photo-album__header {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .photo-album__header h2 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--clr-text);
+    }
+
+    .photo-album__header p {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--clr-text-muted);
+      text-transform: uppercase;
+      margin-top: var(--space-xs);
+    }
+
+    /* Masonry container — CSS column-based (no JS layout) */
+    .masonry {
+      column-count: 4;
+      column-gap: 10px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Each photo card breaks across columns correctly */
+    .photo-card {
+      break-inside: avoid;
+      margin-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+
+      /* Fade-in via IntersectionObserver */
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .photo-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .photo-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      filter: sepia(12%) saturate(88%);
+      transition: transform 0.5s ease, filter 0.4s ease;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.04);
+      filter: sepia(0%) saturate(105%);
+    }
+
+    /* Hover overlay with caption */
+    .photo-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44,36,32,0.72) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 14px;
+    }
+
+    .photo-card:hover .photo-card__overlay { opacity: 1; }
+
+    .photo-card__caption {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.3;
+    }
+
+    /* Gold accent border on hover */
+    .photo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(184,151,60,0);
+      transition: border-color 0.4s ease;
+      pointer-events: none;
+    }
+
+    .photo-card:hover::after { border-color: rgba(184,151,60,0.5); }
+
+    /* Sentinel element for virtual loading */
+    .album-sentinel {
+      height: 1px;
+      width: 100%;
+    }
+
+    /* Load more indicator */
+    .album-loader {
+      text-align: center;
+      padding: var(--space-md);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .album-loader.is-loading { opacity: 1; }
+
+    /* ============================================================
+       LIGHTBOX
+    ============================================================ */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(20, 15, 12, 0.94);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .lightbox.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox__img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      transform: scale(0.95);
+      transition: transform 0.35s ease;
+    }
+
+    .lightbox.is-open .lightbox__img { transform: scale(1); }
+
+    .lightbox__caption {
+      position: absolute;
+      bottom: var(--space-md);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      white-space: nowrap;
+    }
+
+    .lightbox__close {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox__close:hover { background: rgba(255,255,255,0.1); }
+
+    .lightbox__nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox__nav:hover { background: rgba(255,255,255,0.1); }
+    .lightbox__nav--prev { left: var(--space-md); }
+    .lightbox__nav--next { right: var(--space-md); }
+
+    /* ============================================================
+       MOBILE RESPONSIVE
+    ============================================================ */
+    @media (max-width: 768px) {
+      /* --- existing timeline mobile --- */
+      .timeline::before { left: 24px; }
+
+      .timeline__item {
+        grid-template-columns: 48px 1fr;
+        grid-template-rows: auto auto;
+        margin-bottom: var(--space-lg);
+      }
+
+      .timeline__item:nth-child(odd)  .timeline__card,
+      .timeline__item:nth-child(even) .timeline__card {
+        grid-column: 2; grid-row: 2;
+        text-align: left; padding-left: 0; padding-right: 0;
+        margin-top: var(--space-sm);
+      }
+
+      .timeline__item:nth-child(odd)  .timeline__image-wrap,
+      .timeline__item:nth-child(even) .timeline__image-wrap {
+        grid-column: 2; grid-row: 1;
+        padding-left: 0; padding-right: 0;
+      }
+
+      .timeline__item:nth-child(odd)  .timeline__caption { margin-left: 0; }
+      .timeline__dot { grid-column: 1; grid-row: 1; padding-top: 2px; }
+      .stats-band__inner { grid-template-columns: 1fr 1fr; gap: var(--space-lg) var(--space-md); }
+
+      .note-card { transform: rotate(0deg); padding: var(--space-md); }
+      .note-card.is-visible { transform: rotate(0deg); }
+      .note-card__label, .note-card__text { padding-left: 0; }
+      .note-card::after { display: none; }
+      .hero__names { gap: var(--space-sm); }
+
+      /* --- scene blocks mobile --- */
+      .scene-block { grid-template-columns: 1fr; min-height: auto; }
+      .scene-block--reverse { direction: ltr; }
+      .scene-block__visual { height: 55vw; min-height: 220px; }
+      .scene-block__visual img { inset: 0; width: 100%; height: 100%; }
+      .scene-block__text { padding: var(--space-lg) var(--space-md); }
+      .scene-block__text::before { display: none; }
+
+      /* --- masonry mobile --- */
+      .masonry { column-count: 2; }
+    }
+
+    @media (max-width: 480px) {
+      .masonry { column-count: 2; column-gap: 6px; }
+      .photo-card { margin-bottom: 6px; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1100px) {
+      .masonry { column-count: 3; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       SCROLL PROGRESS BAR
+  ============================================================ -->
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       MUSIC TOGGLE — swap audio src below
+  ============================================================ -->
+  <button class="music-btn" id="musicBtn" title="Toggle background music" aria-label="Toggle music">
+    <!-- Icon: musical note (muted state) -->
+    <svg id="iconMuted" viewBox="0 0 24 24"><path d="M3.586 4L2.5 5.086l.707.707L3.586 6.5l1.207-1.207L5.5 6l1-1L5 3.5l-1.414 1.5zM16 1v11.17a4 4 0 1 0 2 3.416V5.97l3 .75V4L16 2.5V1zm-2 15a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/></svg>
+    <!-- Icon: musical note (playing state) -->
+    <svg id="iconPlaying" viewBox="0 0 24 24" style="display:none"><path d="M12 3v10.17A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+  </button>
+
+  <!-- Audio element — REPLACE src WITH YOUR MUSIC FILE -->
+  <audio id="bgMusic" loop>
+    <!-- <source src="your-music.mp3" type="audio/mpeg" /> -->
+    <!-- REPLACE IMAGE HERE: add your .mp3 path above and remove this comment -->
+  </audio>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <header class="hero" id="hero">
+    <div class="hero__bg" id="heroBg"></div>
+    <div class="hero__ring hero__ring--1"></div>
+    <div class="hero__ring hero__ring--2"></div>
+    <div class="hero__ring hero__ring--3"></div>
+
+    <div class="hero__content">
+      <!-- EDIT TEXT HERE -->
+      <p class="hero__eyebrow">A Celebration of Thirty Years</p>
+
+      <h1 class="hero__title">Thirty Years of <em>Love</em></h1>
+
+      <!-- EDIT TEXT HERE — subtitle / tagline -->
+      <p class="hero__subtitle">A journey told in moments, milestones, and memories</p>
+
+      <!-- EDIT TEXT HERE — parent names -->
+      <div class="hero__names">
+        <span>Bukola</span>
+        <span class="ampersand">&amp;</span>
+        <span>Lanre</span>
+      </div>
+
+      <!-- EDIT TEXT HERE — wedding date and anniversary year -->
+      <p class="hero__dates">May 18, 1996 &nbsp;·&nbsp; 30th Anniversary &nbsp;·&nbsp; 2026</p>
+    </div>
+
+    <div class="hero__scroll-cue" aria-hidden="true">scroll</div>
+  </header>
+
+  <!-- ============================================================
+       CINEMATIC SCENE BLOCKS
+       These sit between the hero and the timeline, acting as
+       full-screen "film scenes" that set the emotional stage.
+       Each scene: image left/right + poetic text panel.
+       REPLACE IMAGE HERE in each scene's <img src="...">
+  ============================================================ -->
+
+  <!-- Scene 1: The Meeting -->
+  <section class="scene-block" data-scene>
+    <div class="scene-block__visual">
+      <!-- REPLACE IMAGE HERE -->
+      <img
+        src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=900&q=80"
+        alt="Scene — the first meeting"
+        loading="lazy"
+      />
+    </div>
+    <div class="scene-block__text">
+      <p class="scene-block__eyebrow">Chapter One</p>
+      <div class="scene-block__year">1993</div>
+      <h2 class="scene-block__title">The World Before Each Other</h2>
+      <div class="scene-block__rule"></div>
+      <!-- EDIT TEXT HERE -->
+      <p class="scene-block__caption">
+        Two lives, lived fully and separately, on a quiet collision course.
+        Neither knew what waited at a stranger's doorstep that autumn evening.
+        The universe, as it turns out, had already arranged everything.
+      </p>
+    </div>
+  </section>
+
+  <!-- Scene 2: Falling In Love (reversed) -->
+  <section class="scene-block scene-block--reverse" data-scene>
+    <div class="scene-block__visual">
+      <!-- REPLACE IMAGE HERE -->
+      <img
+        src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=900&q=80"
+        alt="Scene — falling in love"
+        loading="lazy"
+      />
+    </div>
+    <div class="scene-block__text">
+      <p class="scene-block__eyebrow">Chapter Two</p>
+      <div class="scene-block__year">1994</div>
+      <h2 class="scene-block__title">Learning Each Other's Language</h2>
+      <div class="scene-block__rule"></div>
+      <!-- EDIT TEXT HERE -->
+      <p class="scene-block__caption">
+        Long phone calls. Letters. Coffee that got cold because they forgot
+        to drink it. They discovered they laughed at the same things,
+        feared the same silences, and filled them the same way — with honesty.
+      </p>
+    </div>
+  </section>
+
+  <!-- Scene 3: The Proposal -->
+  <section class="scene-block" data-scene>
+    <div class="scene-block__visual">
+      <!-- REPLACE IMAGE HERE -->
+      <img
+        src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=900&q=80"
+        alt="Scene — the proposal"
+        loading="lazy"
+      />
+    </div>
+    <div class="scene-block__text">
+      <p class="scene-block__eyebrow">Chapter Three</p>
+      <div class="scene-block__year">1994</div>
+      <h2 class="scene-block__title">The Question That Changed Everything</h2>
+      <div class="scene-block__rule"></div>
+      <!-- EDIT TEXT HERE -->
+      <p class="scene-block__caption">
+        He had rehearsed it seventeen times. He forgot every word.
+        She said yes before he even finished the sentence.
+        Some questions answer themselves.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CHAPTER INTRO
+  ============================================================ -->
+  <section class="chapter-intro" aria-hidden="true">
+    <p class="chapter-intro__label">Their Story</p>
+    <h2 class="chapter-intro__title">From the very beginning…</h2>
+    <div class="chapter-intro__rule"></div>
+  </section>
+
+  <!-- ============================================================
+       TIMELINE SECTION
+       To add/remove milestones: duplicate or delete a .timeline__item block
+       Images: replace the src="..." on each <img class="timeline__image">
+  ============================================================ -->
+  <main>
+    <section class="timeline" aria-label="Anniversary timeline">
+
+      <!-- ── MILESTONE 1 ────────────────────────────────────── -->
+      <article class="timeline__item">
+        <div class="timeline__card">
+          <!-- EDIT TEXT HERE -->
+          <div class="timeline__year">1993</div>
+          <h3 class="timeline__title">The First Hello</h3>
+          <p class="timeline__caption">
+            It started with a chance encounter at a friend's housewarming party.
+            Neither of them was supposed to be there. By the end of the night,
+            phone numbers had been exchanged — and nothing would ever be the same.
+          </p>
+          <span class="timeline__tag">How it began</span>
+        </div>
+
+        <div class="timeline__dot" aria-hidden="true"></div>
+
+        <div class="timeline__image-wrap">
+          <!-- REPLACE IMAGE HERE — swap src for your own photo -->
+          <img
+            class="timeline__image"
+            src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=600&q=75"
+            alt="1993 — The first hello"
+            loading="lazy"
+          />
+        </div>
+      </article>
+
+      <!-- ── MILESTONE 2 ────────────────────────────────────── -->
+      <article class="timeline__item">
+        <div class="timeline__card">
+          <!-- EDIT TEXT HERE -->
+          <div class="timeline__year">1994</div>
+          <h3 class="timeline__title">The First Trip Together</h3>
+          <p class="timeline__caption">
+            A spontaneous road trip sealed the deal. They laughed through a broken
+            car heater, navigated without GPS, and arrived somewhere far better
+            than their destination — completely, irreversibly in love.
+          </p>
+          <span class="timeline__tag">Adventure</span>
+        </div>
+
+        <div class="timeline__dot" aria-hidden="true"></div>
+
+        <div class="timeline__image-wrap">
+          <!-- REPLACE IMAGE HERE -->
+          <img
+            class="timeline__image"
+            src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=600&q=75"
+            alt="1994 — First trip together"
+            loading="lazy"
+          />
+        </div>
+      </article>
+
+      <!-- ── MILESTONE 3 ────────────────────────────────────── -->
+      <article class="timeline__item">
+        <div class="timeline__card">
+          <!-- EDIT TEXT HERE -->
+          <div class="timeline__year">1996</div>
+          <h3 class="timeline__title">The Wedding Day</h3>
+          <p class="timeline__caption">
+            May 18th, 1996. Surrounded by family and the scent of garden roses,
+            they said "I do" under a sky that seemed to hold its breath.
+            The day began a promise that has only grown stronger.
+          </p>
+          <span class="timeline__tag">May 18, 1996</span>
+        </div>
+
+        <div class="timeline__dot" aria-hidden="true"></div>
+
+        <div class="timeline__image-wrap">
+          <!-- REPLACE IMAGE HERE -->
+          <img
+            class="timeline__image"
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=75"
+            alt="1996 — Wedding day"
+            loading="lazy"
+          />
+        </div>
+      </article>
+
+      <!-- ── MILESTONE 4 ────────────────────────────────────── -->
+      <article class="timeline__item">
+        <div class="timeline__card">
+          <!-- EDIT TEXT HERE -->
+          <div class="timeline__year">1998</div>
+          <h3 class="timeline__title">Their First Home</h3>
+          <p class="timeline__caption">
+            A fixer-upper on Elmwood Drive with creaky floors and a garden that
+            would take years to tame. They painted every room themselves,
+            arguing cheerfully about every shade. It became the warmest place
+            any of us have ever known.
+          </p>
+          <span class="timeline__tag">A new chapter</span>
+        </div>
+
+        <div class="timeline__dot" aria-hidden="true"></div>
+
+        <div class="timeline__image-wrap">
+          <!-- REPLACE IMAGE HERE -->
+          <img
+            class="timeline__image"
+            src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=75"
+            alt="1998 — First home"
+            loading="lazy"
+          />
+        </div>
+      </article>
+
+      <!-- ── MILESTONE 5 ────────────────────────────────────── -->
+      <article class="timeline__item">
+        <div class="timeline__card">
+          <!-- EDIT TEXT HERE -->
+          <div class="timeline__year">2001</div>
+          <h3 class="timeline__title">A Family Grows</h3>
+          <p class="timeline__caption">
+            The patter of small feet changed everything — and somehow made them
+            love each other even more deeply. Sleepless nights, first words,
+            tiny hands. The adventure had new protagonists.
+          </p>
+          <span class="timeline__tag">Family</span>
+        </div>
+
+        <div class="timeline__dot" aria-hidden="true"></div>
+
+        <div class="timeline__image-wrap">
+          <!-- REPLACE IMAGE HERE -->
+          <img
+            class="timeline__image"
+            src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=600&q=75"
+            alt="2001 — Growing family"
+            loading="lazy"
+          />
+        </div>
+      </article>
+
+      <!-- ── MILESTONE 6 ────────────────────────────────────── -->
+      <article class="timeline__item">
+        <div class="timeline__card">
+          <!-- EDIT TEXT HERE -->
+          <div class="timeline__year">2010</div>
+          <h3 class="timeline__title">The 15th Anniversary</h3>
+          <p class="timeline__caption">
+            They returned to the same restaurant where they had their very first
+            date. Same table, same view — but a lifetime of shared stories
+            between them. The waiter mistook them for newlyweds.
+          </p>
+          <span class="timeline__tag">Halfway there</span>
+        </div>
+
+        <div class="timeline__dot" aria-hidden="true"></div>
+
+        <div class="timeline__image-wrap">
+          <!-- REPLACE IMAGE HERE -->
+          <img
+            class="timeline__image"
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=75"
+            alt="2010 — 15th anniversary dinner"
+            loading="lazy"
+          />
+        </div>
+      </article>
+
+      <!-- ── MILESTONE 7 ────────────────────────────────────── -->
+      <article class="timeline__item">
+        <div class="timeline__card">
+          <!-- EDIT TEXT HERE -->
+          <div class="timeline__year">2018</div>
+          <h3 class="timeline__title">Dream Trip to Italy</h3>
+          <p class="timeline__caption">
+            The trip they'd talked about for twenty years finally happened.
+            Cobblestones, gelato, golden-hour light over the Amalfi Coast.
+            They danced — badly and happily — in a piazza while strangers
+            applauded.
+          </p>
+          <span class="timeline__tag">Adventure revisited</span>
+        </div>
+
+        <div class="timeline__dot" aria-hidden="true"></div>
+
+        <div class="timeline__image-wrap">
+          <!-- REPLACE IMAGE HERE -->
+          <img
+            class="timeline__image"
+            src="https://images.unsplash.com/photo-1499678329028-101435549a4e?w=600&q=75"
+            alt="2018 — Italy trip"
+            loading="lazy"
+          />
+        </div>
+      </article>
+
+      <!-- ── MILESTONE 8 ────────────────────────────────────── -->
+      <article class="timeline__item">
+        <div class="timeline__card">
+          <!-- EDIT TEXT HERE -->
+          <div class="timeline__year">2026</div>
+          <h3 class="timeline__title">Thirty Beautiful Years</h3>
+          <p class="timeline__caption">
+            Three decades. Countless shared mornings. Hands still reaching for
+            each other across the table. Their love story is not a single great
+            moment — it is thousands of small ones, strung together like lights
+            on a very long and very wonderful night.
+          </p>
+          <span class="timeline__tag">Today &amp; Always</span>
+        </div>
+
+        <div class="timeline__dot" aria-hidden="true"></div>
+
+        <div class="timeline__image-wrap">
+          <!-- REPLACE IMAGE HERE -->
+          <img
+            class="timeline__image"
+            src="https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=600&q=75"
+            alt="2026 — 30th anniversary"
+            loading="lazy"
+          />
+        </div>
+      </article>
+
+    </section><!-- /timeline -->
+
+    <!-- ============================================================
+         STATS BAND — EDIT TEXT HERE
+    ============================================================ -->
+    <div class="stats-band">
+      <div class="stats-band__inner">
+        <div class="stat">
+          <div class="stat__number">30</div>
+          <div class="stat__label">Years Together</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">10,957</div>
+          <div class="stat__label">Days of Love</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">3</div>
+          <div class="stat__label">Wonderful Children</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">∞</div>
+          <div class="stat__label">More to Come</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         HANDWRITTEN NOTE — EDIT TEXT HERE
+    ============================================================ -->
+    <section class="note-section" aria-label="Personal message">
+      <div class="note-card" id="noteCard">
+        <p class="note-card__label">A note from your children</p>
+
+        <!-- EDIT TEXT HERE — your personal message -->
+        <p class="note-card__text">
+          Mum &amp; Dad,<br><br>
+          Watching you love each other for thirty years has been
+          the greatest gift of our lives. You taught us that love
+          is not a feeling you fall into — it is a choice you
+          make, every single day, with patience and laughter and
+          grace.<br><br>
+          Thank you for showing us what forever looks like.
+          Here is to the next thirty.
+        </p>
+
+        <!-- EDIT TEXT HERE — your name(s) -->
+        <p class="note-card__sign">With all our love, always ♡</p>
+         <p class="note-card__sign">Wale, Joy & David</p>
+      </div>
+    </section>
+
+  </main>
+
+    <!-- ============================================================
+         ALBUM BRIDGE — cinematic transition into photo album
+    ============================================================ -->
+    <div class="album-bridge" id="albumBridge">
+      <p class="album-bridge__label">The Collection</p>
+      <h2 class="album-bridge__title">Every Frame, A Memory</h2>
+      <div class="album-bridge__rule"></div>
+      <!-- EDIT TEXT HERE -->
+      <p class="album-bridge__sub">200 moments. One story. Scroll to remember.</p>
+    </div>
+
+    <!-- ============================================================
+         PHOTO ALBUM — MASONRY WALL
+         Images are loaded in batches of 25 via IntersectionObserver
+         on the sentinel element. Each batch renders smoothly without
+         blocking the main thread.
+
+         TO REPLACE IMAGES:
+         Edit the PHOTO_DATA array in the <script> block below.
+         Set src to local paths like "photos/img001.jpg" or full URLs.
+         The caption and aspect (tall / wide / square) control layout.
+    ============================================================ -->
+    <section class="photo-album" aria-label="Photo album — 200 memories">
+      <div class="photo-album__header">
+        <!-- EDIT TEXT HERE -->
+        <h2>A Life in Photographs</h2>
+        <p>Bukola &amp; Lanre · 1996 – 2026</p>
+      </div>
+
+      <div class="masonry" id="masonryGrid"></div>
+
+      <!-- Sentinel: when this scrolls into view, next batch loads -->
+      <div class="album-sentinel" id="albumSentinel"></div>
+      <div class="album-loader" id="albumLoader">Loading more memories…</div>
+    </section>
+
+    <!-- ============================================================
+         LIGHTBOX
+    ============================================================ -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button class="lightbox__close" id="lbClose" aria-label="Close">✕</button>
+      <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Previous photo">‹</button>
+      <img class="lightbox__img" id="lbImg" src="" alt="" />
+      <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Next photo">›</button>
+      <p class="lightbox__caption" id="lbCaption"></p>
+    </div>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER — EDIT TEXT HERE
+  ============================================================ -->
+  <footer>
+    <p>Bukola &amp; Lanre &nbsp;<span class="heart">♥</span>&nbsp; 1996 – 2026</p>
+    <p style="margin-top:0.5rem; font-size:0.65rem;">Made with love, for the two of you.</p>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ---- Scroll Progress Bar ---- */
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollTop    = document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = `${(scrollTop / scrollHeight) * 100}%`;
+    }, { passive: true });
+
+    /* ---- Parallax Hero Background ---- */
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+      // Subtle parallax — background moves at 30% of scroll speed
+      const offset = window.scrollY * 0.3;
+      heroBg.style.transform = `translateY(${offset}px)`;
+    }, { passive: true });
+
+    /* ---- Intersection Observer: Timeline & Note scroll-in ---- */
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -60px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Slight stagger for each item
+          entry.target.style.transitionDelay = '0s';
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.timeline__item, #noteCard').forEach(el => observer.observe(el));
+
+    /* ---- Stats Counter Animation ---- */
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateStats();
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsBand = document.querySelector('.stats-band');
+    if (statsBand) statsObserver.observe(statsBand);
+
+    function animateStats() {
+      document.querySelectorAll('.stat__number').forEach(el => {
+        const target = el.textContent.trim();
+        if (target === '∞') return; // skip infinity symbol
+
+        const numTarget = parseInt(target.replace(/,/g, ''), 10);
+        const duration  = 1800;
+        const start     = performance.now();
+
+        function step(now) {
+          const elapsed  = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease-out cubic
+          const eased    = 1 - Math.pow(1 - progress, 3);
+          const current  = Math.round(eased * numTarget);
+          el.textContent = current.toLocaleString();
+          if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+      });
+    }
+
+    /* ---- Music Toggle ---- */
+    const musicBtn    = document.getElementById('musicBtn');
+    const bgMusic     = document.getElementById('bgMusic');
+    const iconMuted   = document.getElementById('iconMuted');
+    const iconPlaying = document.getElementById('iconPlaying');
+    let   playing     = false;
+
+    musicBtn.addEventListener('click', () => {
+      if (!bgMusic.src || bgMusic.src === window.location.href) {
+        // No audio source set — show helpful tooltip
+        musicBtn.title = 'Add a music file in the <audio> tag to enable music';
+        musicBtn.style.borderColor = 'var(--clr-blush-deep)';
+        return;
+      }
+      if (playing) {
+        bgMusic.pause();
+        iconMuted.style.display   = 'block';
+        iconPlaying.style.display = 'none';
+      } else {
+        bgMusic.play().catch(() => {});
+        iconMuted.style.display   = 'none';
+        iconPlaying.style.display = 'block';
+      }
+      playing = !playing;
+    });
+
+    /* ---- Subtle cursor sparkle on hero ---- */
+    const hero = document.getElementById('hero');
+    hero.addEventListener('mousemove', (e) => {
+      const dot = document.createElement('span');
+      dot.style.cssText = `
+        position: absolute;
+        left: ${e.clientX + window.scrollX - hero.getBoundingClientRect().left + window.scrollX}px;
+        top:  ${e.clientY + window.scrollY - hero.offsetTop}px;
+        width: 4px; height: 4px;
+        border-radius: 50%;
+        background: var(--clr-gold-light);
+        pointer-events: none;
+        z-index: 2;
+        animation: fadeIn 0.1s ease forwards, sparkleOut 0.7s 0.1s ease forwards;
+      `;
+      hero.appendChild(dot);
+      setTimeout(() => dot.remove(), 800);
+    });
+
+    /* ================================================================
+       CINEMATIC SCENES — scroll reveal + per-scene image parallax
+    ================================================================ */
+    const sceneObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          sceneObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('[data-scene]').forEach(el => sceneObserver.observe(el));
+
+    // Per-scene parallax on image layers
+    const scenes = document.querySelectorAll('.scene-block');
+    window.addEventListener('scroll', () => {
+      const vy = window.scrollY;
+      scenes.forEach(scene => {
+        const img = scene.querySelector('.scene-block__visual img');
+        if (!img) return;
+        const rect   = scene.getBoundingClientRect();
+        const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+        img.style.transform = `translateY(${center * 0.12}px)`;
+      });
+    }, { passive: true });
+
+    /* ================================================================
+       PHOTO ALBUM — VIRTUALIZED BATCH LOADER
+       ================================================================
+       • 216 images split into batches of 24
+       • Each batch is injected only when the sentinel scrolls into view
+       • Every card inside a batch is observed individually for fade-in
+       • Lightbox index maps to all loaded cards
+    ================================================================ */
+
+    // ---------------------------------------------------------------
+    // PHOTO_DATA — REPLACE SRC VALUES WITH YOUR OWN PHOTOS
+    // Format: { src, caption, aspect }
+    //   aspect: "tall" | "wide" | "square"  (controls image height)
+    //   src: local path ("photos/001.jpg") or URL
+    // ---------------------------------------------------------------
+    const PHOTO_DATA = [
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (9).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (9)' },
+  { src: 'images/DSC_0187.JPG', aspect: 'portrait', caption: 'DSC_0187' },
+  { src: 'images/IMG_20180805_121223_9.jpg', aspect: 'portrait', caption: 'IMG_20180805_121223_9' },
+  { src: 'images/IMG_20161225_120016.jpg', aspect: 'portrait', caption: 'IMG_20161225_120016' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.09 PM.jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.09 PM' },
+  { src: 'images/IMG_20170722_140025.jpg', aspect: 'portrait', caption: 'IMG_20170722_140025' },
+  { src: 'images/20200308_182310.jpg', aspect: 'portrait', caption: '20200308_182310' },
+  { src: 'images/IMG_20170518_074005.jpg', aspect: 'portrait', caption: 'IMG_20170518_074005' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.09 PM (4).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.09 PM (4)' },
+  { src: 'images/IMG-20250712-WA0038.jpg', aspect: 'portrait', caption: 'IMG-20250712-WA0038' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (10).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (10)' },
+  { src: 'images/IMG_20180805_121253_3.jpg', aspect: 'portrait', caption: 'IMG_20180805_121253_3' },
+  { src: 'images/IMG_20170310_081059.jpg', aspect: 'portrait', caption: 'IMG_20170310_081059' },
+  { src: 'images/20260110_181322.jpg', aspect: 'portrait', caption: '20260110_181322' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.35.36 PM.jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.35.36 PM' },
+  { src: 'images/IMG_20170310_081105.jpg', aspect: 'portrait', caption: 'IMG_20170310_081105' },
+  { src: 'images/IMG_20170518_074006.jpg', aspect: 'portrait', caption: 'IMG_20170518_074006' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.34.58 PM (2).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.34.58 PM (2)' },
+  { src: 'images/IMG-20200529-WA0004.jpg', aspect: 'portrait', caption: 'IMG-20200529-WA0004' },
+  { src: 'images/IMG_20240803_164035_474.jpg', aspect: 'portrait', caption: 'IMG_20240803_164035_474' },
+  { src: 'images/IMG_20170325_164448.jpg', aspect: 'portrait', caption: 'IMG_20170325_164448' },
+  { src: 'images/IMG_20170604_095034.jpg', aspect: 'portrait', caption: 'IMG_20170604_095034' },
+  { src: 'images/515664304_10234605027839882_3494747263226302213_n.jpg', aspect: 'portrait', caption: '515664304_10234605027839882_3494747263226302213_n' },
+  { src: 'images/Screenshot_20260514_134548_WhatsApp.jpg', aspect: 'portrait', caption: 'Screenshot_20260514_134548_WhatsApp' },
+  { src: 'images/IMG_20170328_131105.jpg', aspect: 'portrait', caption: 'IMG_20170328_131105' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.34.57 PM (1).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.34.57 PM (1)' },
+  { src: 'images/IMG_20170518_183838_715.jpg', aspect: 'portrait', caption: 'IMG_20170518_183838_715' },
+  { src: 'images/IMG_20170722_140035.jpg', aspect: 'portrait', caption: 'IMG_20170722_140035' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.09 PM (2).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.09 PM (2)' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM.jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM' },
+  { src: 'images/IMG-20250630-WA0133.jpg', aspect: 'portrait', caption: 'IMG-20250630-WA0133' },
+  { src: 'images/IMG-20250308-WA0029.jpg', aspect: 'portrait', caption: 'IMG-20250308-WA0029' },
+  { src: 'images/IMG_20170519_192847.jpg', aspect: 'portrait', caption: 'IMG_20170519_192847' },
+  { src: 'images/514650376_10234463022129828_2655262564919303414_n.jpg', aspect: 'portrait', caption: '514650376_10234463022129828_2655262564919303414_n' },
+  { src: 'images/20240926_172609.jpg', aspect: 'portrait', caption: '20240926_172609' },
+  { src: 'images/IMG-20241209-WA0013.jpg', aspect: 'portrait', caption: 'IMG-20241209-WA0013' },
+  { src: 'images/IMG_20170703_223924.jpg', aspect: 'portrait', caption: 'IMG_20170703_223924' },
+  { src: 'images/FB_IMG_1750941674155.jpg', aspect: 'portrait', caption: 'FB_IMG_1750941674155' },
+  { src: 'images/20140411_183307.jpg', aspect: 'portrait', caption: '20140411_183307' },
+  { src: 'images/IMG_20170703_224657.jpg', aspect: 'portrait', caption: 'IMG_20170703_224657' },
+  { src: 'images/IMG_20260104_120740_246.jpg', aspect: 'portrait', caption: 'IMG_20260104_120740_246' },
+  { src: 'images/FB_IMG_14815997011900478.jpg', aspect: 'portrait', caption: 'FB_IMG_14815997011900478' },
+  { src: 'images/FB_IMG_1750941644491.jpg', aspect: 'portrait', caption: 'FB_IMG_1750941644491' },
+  { src: 'images/IMG_20161216_212606.jpg', aspect: 'portrait', caption: 'IMG_20161216_212606' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.34.58 PM.jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.34.58 PM' },
+  { src: 'images/IMG-20240324-WA0013.jpg', aspect: 'portrait', caption: 'IMG-20240324-WA0013' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (8).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (8)' },
+  { src: 'images/IMG_20170325_164610.jpg', aspect: 'portrait', caption: 'IMG_20170325_164610' },
+  { src: 'images/509429973_10234300669071103_7218831555258396129_n.jpg', aspect: 'portrait', caption: '509429973_10234300669071103_7218831555258396129_n' },
+  { src: 'images/Screenshot_20260515_215914_WhatsApp.jpg', aspect: 'portrait', caption: 'Screenshot_20260515_215914_WhatsApp' },
+  { src: 'images/20141002_124254.jpg', aspect: 'portrait', caption: '20141002_124254' },
+  { src: 'images/IMG-20241209-WA0015.jpg', aspect: 'portrait', caption: 'IMG-20241209-WA0015' },
+  { src: 'images/20140831_134104.jpg', aspect: 'portrait', caption: '20140831_134104' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.09 PM (3).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.09 PM (3)' },
+  { src: 'images/516445615_10234646567918358_9125207329391290095_n.jpg', aspect: 'portrait', caption: '516445615_10234646567918358_9125207329391290095_n' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.34.58 PM (1).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.34.58 PM (1)' },
+  { src: 'images/IMG_20170703_223937.jpg', aspect: 'portrait', caption: 'IMG_20170703_223937' },
+  { src: 'images/IMG-20241209-WA0014.jpg', aspect: 'portrait', caption: 'IMG-20241209-WA0014' },
+  { src: 'images/IMG_20170331_074600.jpg', aspect: 'portrait', caption: 'IMG_20170331_074600' },
+  { src: 'images/IMG-20240516-WA0017.jpg', aspect: 'portrait', caption: 'IMG-20240516-WA0017' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.34.58 PM (3).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.34.58 PM (3)' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.09 PM (1).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.09 PM (1)' },
+  { src: 'images/20140810_090616.jpg', aspect: 'portrait', caption: '20140810_090616' },
+  { src: 'images/IMG_20161105_113646.jpg', aspect: 'portrait', caption: 'IMG_20161105_113646' },
+  { src: 'images/FB_IMG_1750939979787.jpg', aspect: 'portrait', caption: 'FB_IMG_1750939979787' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.07 PM.jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.07 PM' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.07 PM (3).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.07 PM (3)' },
+  { src: 'images/20260110_181410.jpg', aspect: 'portrait', caption: '20260110_181410' },
+  { src: 'images/IMG_20180805_121245_5.jpg', aspect: 'portrait', caption: 'IMG_20180805_121245_5' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.43.16 PM.jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.43.16 PM' },
+  { src: 'images/1584305750536IMG-20180309-WA0004.jpg', aspect: 'portrait', caption: '1584305750536IMG-20180309-WA0004' },
+  { src: 'images/IMG_20170703_224515.jpg', aspect: 'portrait', caption: 'IMG_20170703_224515' },
+  { src: 'images/20200308_181920.jpg', aspect: 'portrait', caption: '20200308_181920' },
+  { src: 'images/IMG_20171125_130355_044.jpg', aspect: 'portrait', caption: 'IMG_20171125_130355_044' },
+  { src: 'images/514609997_10234463035970174_4568531653325664237_n.jpg', aspect: 'portrait', caption: '514609997_10234463035970174_4568531653325664237_n' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (2).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (2)' },
+  { src: 'images/516756968_10234743980633615_6730525762221879683_n.jpg', aspect: 'portrait', caption: '516756968_10234743980633615_6730525762221879683_n' },
+  { src: 'images/IMG-20220327-WA0007.jpg', aspect: 'portrait', caption: 'IMG-20220327-WA0007' },
+  { src: 'images/IMG-20240927-WA0067.jpg', aspect: 'portrait', caption: 'IMG-20240927-WA0067' },
+  { src: 'images/Screenshot_20260516_103243_WhatsApp.jpg', aspect: 'portrait', caption: 'Screenshot_20260516_103243_WhatsApp' },
+  { src: 'images/IMG-20240516-WA0018.jpg', aspect: 'portrait', caption: 'IMG-20240516-WA0018' },
+  { src: 'images/IMG-20240516-WA0019.jpg', aspect: 'portrait', caption: 'IMG-20240516-WA0019' },
+  { src: 'images/IMG_20161225_120043.jpg', aspect: 'portrait', caption: 'IMG_20161225_120043' },
+  { src: 'images/FB_IMG_1750941679136.jpg', aspect: 'portrait', caption: 'FB_IMG_1750941679136' },
+  { src: 'images/FB_IMG_1750940258768.jpg', aspect: 'portrait', caption: 'FB_IMG_1750940258768' },
+  { src: 'images/IMG-20240221-WA0025.jpg', aspect: 'portrait', caption: 'IMG-20240221-WA0025' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.35.36 PM (1).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.35.36 PM (1)' },
+  { src: 'images/IMG_20260405_113254_687.jpg', aspect: 'portrait', caption: 'IMG_20260405_113254_687' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.07 PM (1).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.07 PM (1)' },
+  { src: 'images/IMG_20260104_120733_715.jpg', aspect: 'portrait', caption: 'IMG_20260104_120733_715' },
+  { src: 'images/IMG_20170310_054833_031.jpg', aspect: 'portrait', caption: 'IMG_20170310_054833_031' },
+  { src: 'images/IMG-20240516-WA0021.jpg', aspect: 'portrait', caption: 'IMG-20240516-WA0021' },
+  { src: 'images/FB_IMG_1750939861092.jpg', aspect: 'portrait', caption: 'FB_IMG_1750939861092' },
+  { src: 'images/IMG-20240516-WA0020.jpg', aspect: 'portrait', caption: 'IMG-20240516-WA0020' },
+  { src: 'images/IMG_20260104_120815_391.jpg', aspect: 'portrait', caption: 'IMG_20260104_120815_391' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (4).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (4)' },
+  { src: 'images/FB_IMG_1750941658512.jpg', aspect: 'portrait', caption: 'FB_IMG_1750941658512' },
+  { src: 'images/48219134_10216501136853922_8580121283218374656_n.jpg', aspect: 'portrait', caption: '48219134_10216501136853922_8580121283218374656_n' },
+  { src: 'images/IMG_20241207_183529_935.jpg', aspect: 'portrait', caption: 'IMG_20241207_183529_935' },
+  { src: 'images/IMG_20170519_192838.jpg', aspect: 'portrait', caption: 'IMG_20170519_192838' },
+  { src: 'images/IMG_20171125_130437_597.jpg', aspect: 'portrait', caption: 'IMG_20171125_130437_597' },
+  { src: 'images/Screenshot_20260515_221134_Gallery.jpg', aspect: 'portrait', caption: 'Screenshot_20260515_221134_Gallery' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (6).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (6)' },
+  { src: 'images/IMG-20240516-WA0022.jpg', aspect: 'portrait', caption: 'IMG-20240516-WA0022' },
+  { src: 'images/20140412_100540.jpg', aspect: 'portrait', caption: '20140412_100540' },
+  { src: 'images/IMG_20170704_075719.jpg', aspect: 'portrait', caption: 'IMG_20170704_075719' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (1).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (1)' },
+  { src: 'images/IMG_20170310_081052.jpg', aspect: 'portrait', caption: 'IMG_20170310_081052' },
+  { src: 'images/Dupsy 20190521_101851.jpg', aspect: 'portrait', caption: 'Dupsy 20190521_101851' },
+  { src: 'images/555499744_10238688681499924_7719757375379465808_n.jpg', aspect: 'portrait', caption: '555499744_10238688681499924_7719757375379465808_n' },
+  { src: 'images/IMG-20250308-WA0025.jpg', aspect: 'portrait', caption: 'IMG-20250308-WA0025' },
+  { src: 'images/IMG-20231231-WA0032.jpg', aspect: 'portrait', caption: 'IMG-20231231-WA0032' },
+  { src: 'images/511138359_10234300671351160_2563565676992065336_n.jpg', aspect: 'portrait', caption: '511138359_10234300671351160_2563565676992065336_n' },
+  { src: 'images/IMG_20170518_184436_616.jpg', aspect: 'portrait', caption: 'IMG_20170518_184436_616' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.07 PM (2).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.07 PM (2)' },
+  { src: 'images/515258394_10234463022049826_2109819795166381118_n.jpg', aspect: 'portrait', caption: '515258394_10234463022049826_2109819795166381118_n' },
+  { src: 'images/IMG_20170416_115558.jpg', aspect: 'portrait', caption: 'IMG_20170416_115558' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (3).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (3)' },
+  { src: 'images/17190681_10203028866158895_1540757474063659374_n.jpg', aspect: 'portrait', caption: '17190681_10203028866158895_1540757474063659374_n' },
+  { src: 'images/Screenshot_20250308_170351_WhatsApp.jpg', aspect: 'portrait', caption: 'Screenshot_20250308_170351_WhatsApp' },
+  { src: 'images/Screenshot_20260515_221329_Gallery.jpg', aspect: 'portrait', caption: 'Screenshot_20260515_221329_Gallery' },
+  { src: 'images/IMG_20210717_183646.jpg', aspect: 'portrait', caption: 'IMG_20210717_183646' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (7).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (7)' },
+  { src: 'images/IMG_20241207_183532_299.jpg', aspect: 'portrait', caption: 'IMG_20241207_183532_299' },
+  { src: 'images/465241111_10231289380150762_3371783195439964029_n.jpg', aspect: 'portrait', caption: '465241111_10231289380150762_3371783195439964029_n' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.34.57 PM.jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.34.57 PM' },
+  { src: 'images/Screenshot_20251212_193708_WhatsApp.jpg', aspect: 'portrait', caption: 'Screenshot_20251212_193708_WhatsApp' },
+  { src: 'images/IMG_20170518_074008.jpg', aspect: 'portrait', caption: 'IMG_20170518_074008' },
+  { src: 'images/20200722_210107.jpg', aspect: 'portrait', caption: '20200722_210107' },
+  { src: 'images/IMG_20210717_184115_150.jpg', aspect: 'portrait', caption: 'IMG_20210717_184115_150' },
+  { src: 'images/IMG_20170518_184523_051.jpg', aspect: 'portrait', caption: 'IMG_20170518_184523_051' },
+  { src: 'images/IMG-20250712-WA0036.jpg', aspect: 'portrait', caption: 'IMG-20250712-WA0036' },
+  { src: 'images/WhatsApp Image 2026-05-16 at 4.46.08 PM (5).jpeg', aspect: 'portrait', caption: 'WhatsApp Image 2026-05-16 at 4.46.08 PM (5)' },
+  { src: 'images/IMG_20170518_074009.jpg', aspect: 'portrait', caption: 'IMG_20170518_074009' },
+];
+
+    const PHOTO2_DATA = (() => {
+      // Curated placeholder set using different Unsplash photo IDs
+      // Each ID produces a unique lifestyle/couple/nature/travel image
+      const seeds = [
+        { id:'1529634806980-85c3dd6d34ac', cap:'First summer together',         asp:'tall'   },
+        { id:'1494790108377-be9c29b29330', cap:'Laughing at nothing',            asp:'square' },
+        { id:'1516589091380-5d8e87df6999', cap:'Golden hour',                   asp:'wide'   },
+        { id:'1519741497674-611481863552', cap:'The big day',                    asp:'tall'   },
+        { id:'1568605114967-8130f3a36994', cap:'Our first home',                 asp:'wide'   },
+        { id:'1503220317375-aaad61436b1b', cap:'Road trip, 1994',               asp:'tall'   },
+        { id:'1414235077428-338989a2e8c0', cap:'Anniversary dinner',             asp:'wide'   },
+        { id:'1499678329028-101435549a4e', cap:'Amalfi Coast, 2018',            asp:'tall'   },
+        { id:'1491013516836-7db643ee125a', cap:'Family portrait',               asp:'square' },
+        { id:'1529156069898-49953e39b3ac', cap:'Summer picnic',                 asp:'wide'   },
+        { id:'1518199266791-5375a83190b7', cap:'Dancing in the kitchen',         asp:'tall'   },
+        { id:'1474552226712-ac0f0961a954', cap:'Snowed in',                     asp:'wide'   },
+        { id:'1606216794074-735e91aa2c92', cap:'The proposal',                  asp:'tall'   },
+        { id:'1464207687429-7505649dae38', cap:'Morning coffee ritual',          asp:'square' },
+        { id:'1548199973-ec2cb9df48b8',   cap:'Christmas morning',              asp:'wide'   },
+        { id:'1476703761000-ece8d22d3158', cap:'Beach holiday',                 asp:'tall'   },
+        { id:'1507003211169-0a1dd7228f2d', cap:'Birthday celebration',           asp:'wide'   },
+        { id:'1523275335684-37898b6baf30', cap:'Saturday farmers market',        asp:'square' },
+        { id:'1529156069898-49953e39b3ac', cap:'Late afternoon walk',            asp:'tall'   },
+        { id:'1459213183890-8d38f8cd89dc', cap:'Garden in bloom',               asp:'wide'   },
+        { id:'1544005313-94ddf0286df2',   cap:'Reading by the fire',            asp:'tall'   },
+        { id:'1520454374374-ef66f1bc3e02', cap:'New Year\'s Eve',               asp:'square' },
+        { id:'1538985840530-af73b9c7e440', cap:'Paris trip, 2015',              asp:'wide'   },
+        { id:'1469371670807-013ccf25f16a', cap:'Hiking the highlands',           asp:'tall'   },
+        { id:'1496440788559-a75b7c3f61e0', cap:'Old letters',                   asp:'square' },
+        { id:'1550399105-c4db5fb85c18',   cap:'Neighbourhood walks',            asp:'wide'   },
+        { id:'1478131143081-80f7f84ca84d', cap:'Cooking together',              asp:'tall'   },
+        { id:'1601158935942-52255782d322', cap:'Her laugh',                     asp:'square' },
+        { id:'1530785602389-07594belf849', cap:'His patience',                  asp:'wide'   },
+        { id:'1511285604951-8f41d2b6dab1', cap:'The grandchildren',             asp:'tall'   },
+        { id:'1525026813770-4a1c8b93c2a1', cap:'Music evenings',                asp:'wide'   },
+        { id:'1505455184862-554165e5f6ba', cap:'Twilight on the porch',         asp:'square' },
+        { id:'1464822759023-fed622ff2c3b', cap:'Mountain sunrise',              asp:'tall'   },
+        { id:'1501854140801-50d01698950b', cap:'Autumn in the park',            asp:'wide'   },
+        { id:'1516912481800-3f99a267f475', cap:'His morning routine',           asp:'square' },
+        { id:'1504276048855-f3d60e69632d', cap:'Her garden',                    asp:'tall'   },
+      ];
+
+      // Expand to 216 by cycling through and adding year labels
+      const years = [
+        '1993','1994','1995','1996','1997','1998','1999','2000',
+        '2001','2002','2003','2004','2005','2006','2007','2008',
+        '2009','2010','2011','2012','2013','2014','2015','2016',
+        '2017','2018','2019','2020','2021','2022','2023','2024','2025'
+      ];
+
+      return Array.from({ length: 216 }, (_, i) => {
+        const s = seeds[i % seeds.length];
+        const y = years[Math.floor(i / 7) % years.length];
+        return {
+          // REPLACE IMAGE HERE — swap with local path, e.g. `photos/img${String(i+1).padStart(3,'0')}.jpg`
+          src:     `https://images.unsplash.com/photo-${s.id}?w=480&q=70`,
+          caption: `${s.cap} · ${y}`,
+          aspect:  s.asp,
+        };
+      });
+    })();
+
+    // Height classes mapped to aspect ratios
+    const ASPECT_HEIGHT = { tall: '320px', wide: '180px', square: '240px' };
+    const BATCH_SIZE    = 24;   // images loaded per scroll trigger
+    let   batchIndex    = 0;    // tracks how many batches loaded
+    let   loadedCards   = [];   // flat array of all rendered .photo-card elements
+
+    const masonryGrid  = document.getElementById('masonryGrid');
+    const albumSentinel= document.getElementById('albumSentinel');
+    const albumLoader  = document.getElementById('albumLoader');
+
+    // Individual card fade-in observer (reused for all cards)
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+
+    function renderBatch() {
+      const start = batchIndex * BATCH_SIZE;
+      const end   = Math.min(start + BATCH_SIZE, PHOTO_DATA.length);
+      if (start >= PHOTO_DATA.length) {
+        albumLoader.textContent = '— All memories loaded —';
+        albumLoader.classList.add('is-loading');
+        return;
+      }
+
+      albumLoader.classList.add('is-loading');
+
+      // Use requestIdleCallback when available for non-blocking render
+      const schedule = window.requestIdleCallback || (fn => setTimeout(fn, 16));
+
+      schedule(() => {
+        const fragment = document.createDocumentFragment();
+
+        for (let i = start; i < end; i++) {
+          const d   = PHOTO_DATA[i];
+          const idx = i;
+
+          const card = document.createElement('div');
+          card.className = 'photo-card';
+          card.setAttribute('data-index', idx);
+          card.setAttribute('role', 'button');
+          card.setAttribute('tabindex', '0');
+          card.setAttribute('aria-label', `Open photo: ${d.caption}`);
+
+          const img = document.createElement('img');
+          img.src     = d.src;
+          img.alt     = d.caption;
+          img.loading = 'lazy';
+          img.style.height = ASPECT_HEIGHT[d.aspect] || '240px';
+
+          const overlay = document.createElement('div');
+          overlay.className = 'photo-card__overlay';
+          overlay.innerHTML = `<span class="photo-card__caption">${d.caption}</span>`;
+
+          card.appendChild(img);
+          card.appendChild(overlay);
+          fragment.appendChild(card);
+
+          // Store reference for lightbox navigation
+          loadedCards.push(card);
+
+          // Click → open lightbox
+          card.addEventListener('click', () => openLightbox(idx));
+          card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(idx); });
+        }
+
+        masonryGrid.appendChild(fragment);
+        batchIndex++;
+        albumLoader.classList.remove('is-loading');
+
+        // Observe newly added cards for fade-in
+        masonryGrid.querySelectorAll('.photo-card:not(.is-visible)').forEach(c => cardObserver.observe(c));
+
+        // If more batches remain, keep watching the sentinel
+        if (batchIndex * BATCH_SIZE < PHOTO_DATA.length) {
+          sentinelObserver.observe(albumSentinel);
+        } else {
+          albumLoader.textContent = '— All memories loaded —';
+          albumLoader.classList.add('is-loading');
+        }
+      });
+    }
+
+    // Sentinel triggers next batch when scrolled into view
+    const sentinelObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          sentinelObserver.unobserve(albumSentinel);
+          renderBatch();
+        }
+      });
+    }, { rootMargin: '400px' }); // pre-load 400px before sentinel hits viewport
+
+    // Kick off first batch when the album section enters view
+    const albumSection = document.querySelector('.photo-album');
+    const albumStartObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        albumStartObserver.disconnect();
+        renderBatch();           // first batch
+        sentinelObserver.observe(albumSentinel);
+      }
+    }, { rootMargin: '200px' });
+
+    if (albumSection) albumStartObserver.observe(albumSection);
+
+    /* ================================================================
+       LIGHTBOX
+    ================================================================ */
+    const lightbox  = document.getElementById('lightbox');
+    const lbImg     = document.getElementById('lbImg');
+    const lbCaption = document.getElementById('lbCaption');
+    const lbClose   = document.getElementById('lbClose');
+    const lbPrev    = document.getElementById('lbPrev');
+    const lbNext    = document.getElementById('lbNext');
+    let   lbIndex   = 0;
+
+    function openLightbox(idx) {
+      lbIndex = idx;
+      const d = PHOTO_DATA[idx];
+      lbImg.src         = d.src.replace('w=480', 'w=1200').replace('q=70', 'q=85');
+      lbImg.alt         = d.caption;
+      lbCaption.textContent = d.caption;
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+      // Brief delay before clearing src to avoid flash
+      setTimeout(() => { lbImg.src = ''; }, 350);
+    }
+
+    function navLightbox(dir) {
+      // Only navigate within loaded images
+      const maxIdx = PHOTO_DATA.length - 1;
+      lbIndex = Math.max(0, Math.min(maxIdx, lbIndex + dir));
+      const d = PHOTO_DATA[lbIndex];
+      lbImg.style.opacity = '0';
+      setTimeout(() => {
+        // lbImg.src             = d.src.replace('w=480', 'w=1200').replace('q=70', 'q=85');
+        lbImg.src = d.src;
+        lbImg.alt             = d.caption;
+        lbCaption.textContent = d.caption;
+        lbImg.style.opacity   = '1';
+      }, 150);
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click',  () => navLightbox(-1));
+    lbNext.addEventListener('click',  () => navLightbox(+1));
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowLeft')   navLightbox(-1);
+      if (e.key === 'ArrowRight')  navLightbox(+1);
+    });
+
+    // Smooth lightbox image opacity transition
+    lbImg.style.transition = 'opacity 0.15s ease';
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes sparkleOut {
+        to { opacity: 0; transform: scale(0) translateY(-10px); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+
+</body>
+</html>
